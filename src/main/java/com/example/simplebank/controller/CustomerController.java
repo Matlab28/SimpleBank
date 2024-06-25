@@ -5,6 +5,7 @@ import com.example.simplebank.dto.response.CustomerResponseDto;
 import com.example.simplebank.entity.CustomerEntity;
 import com.example.simplebank.exception.MyException;
 import com.example.simplebank.service.CustomerService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/customer")
+@SecurityRequirement(name = "Bearer Authentication")
 public class CustomerController {
     private final CustomerService service;
 

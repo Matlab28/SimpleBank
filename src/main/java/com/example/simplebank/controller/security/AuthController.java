@@ -1,5 +1,6 @@
 package com.example.simplebank.controller.security;
 
+import com.example.simplebank.dto.request.ConfirmRequestDto;
 import com.example.simplebank.dto.security.request.AuthRequestDTO;
 import com.example.simplebank.dto.security.request.RegisterRequestDTO;
 import com.example.simplebank.dto.security.response.AuthResponseDTO;
@@ -25,5 +26,10 @@ public class AuthController {
     @PostMapping("/authenticate")
     public ResponseEntity<AuthResponseDTO> authenticate(@RequestBody AuthRequestDTO dto) {
         return ResponseEntity.ok(authService.authenticate(dto));
+    }
+
+    @PostMapping("/confirm-email")
+    public String confirm(@RequestBody ConfirmRequestDto dto) {
+        return authService.confirm(dto);
     }
 }

@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 @Setter
 @Getter
 public class PersonRequestDto {
-    private String name;
     private String email;
     private String password;
+    private String passConfirm;
     private Set<String> roles = new HashSet<>();
 
     public PersonRequestDto() {
@@ -23,14 +23,12 @@ public class PersonRequestDto {
 
     public PersonRequestDto(Long id, String name, String email, Set<String> roles) {
         super();
-        this.name = name;
         this.email = email;
         this.roles = roles;
     }
 
     public PersonRequestDto(PersonEntity person) {
         super();
-        this.name = person.getName();
         this.email = person.getEmail();
         this.setRoles(person.getRoles());
     }

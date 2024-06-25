@@ -45,7 +45,6 @@ public class PersonService {
     public PersonEntity update(PersonEntity person) {
         checkEmailDuplication(person);
         PersonEntity p = findById(person.getId());
-        p.setName(person.getName());
         p.setEmail(person.getEmail());
         p.setRoles(person.getRoles());
         return repository.save(p);

@@ -28,14 +28,14 @@ public class PersonEntity implements Serializable, UserDetails {
     @SequenceGenerator(name = "gen_person_id", sequenceName = "seq_person_id", allocationSize = 1)
     private Long id;
 
-    @Column(nullable = false, length = 50)
-    private String name;
-
     @Column(nullable = false, unique = true, length = 100)
     private String email;
 
     @Column(nullable = false, length = 60)
     private String password;
+
+    @Column(name = "password_confirmation")
+    private String passConfirm;
 
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
@@ -46,24 +46,24 @@ public class PersonEntity implements Serializable, UserDetails {
         super();
     }
 
-    public PersonEntity(Long id, String name, String email, String password, Set<Role> roles) {
+    public PersonEntity(Long id, String email, String password, String passConfirm, Set<Role> roles) {
         super();
         this.id = id;
-        this.name = name;
         this.email = email;
         this.password = password;
+        this.passConfirm = passConfirm;
         this.setRoles(roles);
     }
 
-    public PersonEntity(String name, String email, String password) {
+    public PersonEntity(String email, String password, String passConfirm) {
         super();
-        this.name = name;
         this.email = email;
         this.password = password;
+        this.passConfirm = passConfirm;
     }
 
     public PersonEntity(PersonResponseDto dto) {
-        this(dto.getName(), dto.getEmail(), dto.getPassword());
+        this(dto.getEmail(), dto.getPassword(), dto.getPassConfirm());
         this.setId(dto.getId());
         this.setStringRoles(dto.getRoles());
     }
@@ -126,6 +126,6 @@ public class PersonEntity implements Serializable, UserDetails {
 
     @Override
     public String toString() {
-        return "Person [id=" + id + ", name=" + name + ", email=" + email + ", roles=" + getRoles() + "]";
+        return "Person [id=" + id + ", email=" + email + ", roles=" + getRoles() + "]";
     }
 }
