@@ -91,7 +91,7 @@ public class AuthService {
         String text = "Hi, thank you for your registration!" +
                 "\n\nThis is your confirmation code : " + getConfirmation() + "\n\nDo not share it.";
 
-        message.setFrom("matlab.abbaszada@gmail.com");
+        message.setFrom("YOUR_EMAIL_ADDRESS");
         message.setTo(dto.getEmail());
         message.setText(text);
         message.setSubject(subject);
